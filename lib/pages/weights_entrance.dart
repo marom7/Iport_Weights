@@ -3,6 +3,8 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 
+late Widget tableWeights;
+
 class WightsEntPage extends StatefulWidget {
   const WightsEntPage({Key? key}) : super(key: key);
 
@@ -55,7 +57,12 @@ class _WightsEntPageState extends State<WightsEntPage> {
       _start();
       isClockStart = true;
     }
-    return Scaffold(
+    return TableOfWeights();
+  }
+
+  // ignore: non_constant_identifier_names
+  Widget TableOfWeights() {
+    tableWeights = Scaffold(
         appBar: AppBar(
           title: const Text('משקלים- נמל אשדוד'),
         ),
@@ -142,8 +149,12 @@ class _WightsEntPageState extends State<WightsEntPage> {
             ),
           ),
         ));
+    return tableWeights;
   }
 }
+
+
+
 //Text(
 //                    item['name'].toString(),
  //                   textAlign: TextAlign.center,
