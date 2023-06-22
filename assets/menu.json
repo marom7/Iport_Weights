@@ -1,0 +1,48 @@
+{
+    "buttons": [
+      {
+        "icon": "0xe3b2",
+        "name": "כניסה",
+        "routing": "/login",
+        "color":"0xFF64B5F6",
+        "fontSize":"30"
+      },
+      {
+        "icon": "0xe37e",
+        "name": "שער כניסה",
+        "routing": "/gateEnt",
+        "color":"0xFF64F6A3",
+        "fontSize":"20"
+      },
+      {
+        "icon": "0xe942",
+        "name": "שער יציאה",
+        "routing": "/gateExit",
+        "color":"0xFF00A156",
+        "fontSize":"20"
+      },
+      {
+        "icon": "0xf165",
+        "name": "כל המשקלים",
+        "routing": "/allWeights",
+        "color":"0xFFFEE440",
+        "fontSize":"20"
+      },
+      {
+        "icon": "0xe57f",
+        "name": "הגדרות",
+        "routing": "/setting",
+        "color":"0xFF4F5D75",
+        "fontSize":"30"
+      },
+      {
+        "icon": "0xe486",
+        "name": "משתמשים",
+        "routing": "/users",
+        "color":"0xFFB8B8FF",
+        "fontSize":"30"
+      }
+    ]
+  }
+
+ 
