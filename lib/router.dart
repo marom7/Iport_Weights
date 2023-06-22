@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '/pages/login_page.dart';
 import '/pages/users_page.dart';
-import '/pages/weights_entrance.dart';
+import 'pages/weights.dart';
 import '/pages/weights_exit.dart';
+import 'package:iport_weight/pages/weight_all.dart';
 import 'pages/settings.dart';
 
 class Router {
@@ -17,7 +18,7 @@ class Router {
       case '/gateExit':
         return FadeRoute(page: const WeightsExitPage());
       case '/allWeights':
-        return FadeRoute(page: const WeightsExitPage());
+        return FadeRoute(page: const WeightsAllPage());
       case '/setting':
         return FadeRoute(page: const SettingPage());
       case '/users':
