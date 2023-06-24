@@ -1,49 +1,37 @@
-// ignore_for_file: prefer_final_fields
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import '../my_data.dart';
 
 late Widget tableWeights;
 
-class WightsEntPage extends StatefulWidget {
-  const WightsEntPage({Key? key}) : super(key: key);
+class Weights extends StatefulWidget {
+  const Weights({super.key});
 
   @override
-  State<WightsEntPage> createState() => _WightsEntPageState();
+  State<Weights> createState() => _WeightsState();
 }
 
-class _WightsEntPageState extends State<WightsEntPage> {
-  // Generate a list of fiction prodcts
-  List<Map> _weights = List.generate(30, (i) {
-    return {
-      "name": i + 1,
-      "ip": "198.168.0.$i",
-      "weight_1": Random().nextInt(150) + 1,
-      "weight_2": Random().nextInt(150) + 1
-    };
-  });
-
-  /* Map<String, dynamic> weights = {
-    "name": "num1",
-    "ip": "198.168.0.1",
-    "weight_1": Random().nextInt(150) + 1,
-    "weight_2": Random().nextInt(150) + 1
-  }; */
-  int _currentSortColumn = 0;
-  bool _isAscending = true;
+class _WeightsState extends State<Weights> {
   bool isClockStart = false;
   late Timer timer;
   void _start() {
     timer = Timer.periodic(const Duration(seconds: 10), (Timer t) {
       // Update the UI
+
       setState(() {
-        for (int i = 0; i < _weights.length; i++) {
-          _weights[i].update('weight_1', (value) => Random().nextInt(150) + 1);
-          _weights[i].update('weight_2', (value) => Random().nextInt(100) + 1);
+        for (int i = 0; i < MyData.weights.length; i++) {
+          MyData.weights[i]
+              .update('weight_1', (value) => Random().nextInt(150) + 1);
+          MyData.weights[i]
+              .update('weight_2', (value) => Random().nextInt(100) + 1);
         }
       });
     });
   }
+
+  int _currentSortColumn = 0;
+  bool _isAscending = true;
 
   @override
   void dispose() {
@@ -52,16 +40,21 @@ class _WightsEntPageState extends State<WightsEntPage> {
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
     if (!isClockStart) {
       _start();
       isClockStart = true;
     }
-    return TableOfWeights();
+    return tableWeights;
   }
 
-  // ignore: non_constant_identifier_names
+  // ignore: non_constant_identifier_names, unused_element
   Widget TableOfWeights() {
+    if (!isClockStart) {
+      _start();
+      isClockStart = true;
+    }
     tableWeights = Scaffold(
         appBar: AppBar(
           title: const Text('משקלים- נמל אשדוד'),
@@ -76,7 +69,7 @@ class _WightsEntPageState extends State<WightsEntPage> {
               headingRowColor: MaterialStateProperty.all(Colors.amber[200]),
               columns: [
                 const DataColumn(label: Text('שם')),
-                const DataColumn(label: Text('IP')),
+                const DataColumn(label: Text('מיקום')),
                 DataColumn(
                     label: const Text(
                       'משקל 1',
@@ -92,13 +85,13 @@ class _WightsEntPageState extends State<WightsEntPage> {
                         if (_isAscending == true) {
                           _isAscending = false;
                           // sort the product list in Ascending, order by Price
-                          _weights.sort((productA, productB) =>
+                          MyData.weights.sort((productA, productB) =>
                               productB['weight_1']
                                   .compareTo(productA['weight_1']));
                         } else {
                           _isAscending = true;
                           // sort the product list in Descending, order by Price
-                          _weights.sort((productA, productB) =>
+                          MyData.weights.sort((productA, productB) =>
                               productA['weight_1']
                                   .compareTo(productB['weight_1']));
                         }
@@ -119,20 +112,20 @@ class _WightsEntPageState extends State<WightsEntPage> {
                         if (_isAscending == true) {
                           _isAscending = false;
                           // sort the product list in Ascending, order by Price
-                          _weights.sort((weightA, weightB) =>
+                          MyData.weights.sort((weightA, weightB) =>
                               weightB['weight_2']
                                   .compareTo(weightA['weight_2']));
                         } else {
                           _isAscending = true;
                           // sort the product list in Descending, order by Price
-                          _weights.sort((weightA, weightB) =>
+                          MyData.weights.sort((weightA, weightB) =>
                               weightA['weight_2']
                                   .compareTo(weightB['weight_2']));
                         }
                       });
                     }),
               ],
-              rows: _weights.map((item) {
+              rows: MyData.weights.map((item) {
                 return DataRow(cells: [
                   DataCell(Text(item['name'].toString())),
                   DataCell(Text(item['ip'].toString())),
@@ -152,9 +145,3 @@ class _WightsEntPageState extends State<WightsEntPage> {
     return tableWeights;
   }
 }
-
-
-
-//Text(
-//                    item['name'].toString(),
- //                   textAlign: TextAlign.center,
