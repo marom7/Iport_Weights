@@ -1,3 +1,3 @@
 # iport_weight
 
-A new Flutter project.
+מערכת שקיילה לדגימת המשקלים כל זמן נתון.
